@@ -4,7 +4,7 @@
         <div class="card-header">
             <div class="card-title">
                 <h3 class="card-label">
-                    Input Sampah
+                    Input Pengajuan Sampah
 
                 </h3>
             </div>
@@ -15,7 +15,7 @@
                 {{ csrf_field() }}
                 <div class="card-body">
                     <div class="form-group">
-                        <label>id_sampah:</label>
+                        <label>Jenis Sampah:</label>
                         <select name="id_sampah" class="form-control" id="id_sampah">
 
                             @foreach ($jenis_sampah as $js)
@@ -45,14 +45,6 @@
                         <label>Jumlah Rupiah:</label>
                         <input type="text" class="form-control" name="jumlah_uang" placeholder="jumlah" id="jumlah" />
                     </div>
-
-                    <div class="form-group">
-                        <label>Jumlah emas:</label>
-                        <input type="text" class="form-control" name="jumlah_emas" placeholder="jumlah emas" />
-                    </div>
-
-
-
 
                 </div>
                 <div class="card-footer">
