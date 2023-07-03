@@ -22,5 +22,10 @@ class PengajuanEmas extends Model
         return $this->belongsTo('\App\Models\Nasabah' , 'id_nasabah');
     }
 
+    public function getHargaEmas()
+    {
+        return $this->belongsTo('\App\Models\HargaEmas' , 'id_harga_emas');
+    }
+
 
 }

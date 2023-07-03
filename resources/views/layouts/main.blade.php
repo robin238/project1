@@ -710,6 +710,7 @@
 <body id="kt_body"
     class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed aside-minimize-hoverable"
     data-new-gr-c-s-check-loaded="14.1098.0" data-gr-ext-installed="" data-scrolltop="on">
+
     <!--begin::Main-->
     <!--begin::Header Mobile-->
     <div id="kt_header_mobile" class="header-mobile align-items-center header-mobile-fixed">

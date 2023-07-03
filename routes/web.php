@@ -42,7 +42,7 @@ Route::group(['middleware' => 'nasabah'], function () {
         return view('dashboard_nasabah');
     });
 });
-    
+
 
 
 Route::get('/nasabah', [App\Http\Controllers\NasabahController::class, 'index']);
@@ -62,3 +62,11 @@ Route::get('/pengajuan_sampah/delete/{id}', [App\Http\Controllers\PengajuanSampa
 
 
 Route::get('/pengajuan_emas', [App\Http\Controllers\PengajuanEmasController::class, 'index']);
+Route::get('/pengajuan_emas/input', [App\Http\Controllers\PengajuanEmasController::class, 'input']);
+Route::post('/pengajuan_emas/store', [App\Http\Controllers\PengajuanEmasController::class, 'store']);
+Route::get('/pengajuan_emas/edit/{id}', [App\Http\Controllers\PengajuanEmasController::class, 'edit']);
+Route::post('/pengajuan_emas/update', [App\Http\Controllers\PengajuanEmasController::class, 'update']);
+Route::post('/cek_harga', [App\Http\Controllers\PengajuanEmasController::class, 'cek_harga']);
+Route::get('/pengajuan_emas/delete/{id}', [App\Http\Controllers\PengajuanEmasController::class, 'delete']);
+Route::get('/pengajuan_emas_approve/edit/{id}', [App\Http\Controllers\PengajuanEmasController::class, 'edit_approve']);
+Route::post('/pengajuan_emas_approve/update', [App\Http\Controllers\PengajuanEmasController::class, 'update_approve']);

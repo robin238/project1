@@ -10,8 +10,9 @@
             </div>
         </div>
 
+        @include('sweetalert::alert')
         <div class="card-body">
-            <form action="/pengajuan_emas/update" method="post" class="form">
+            <form action="/pengajuan_emas_approve/update" method="post" class="form">
                 {{ csrf_field() }}
                 <div class="card-body">
                     <input type="hidden" name="id" value="{{ $pengajuan_emas->id }}"> <br />
@@ -27,7 +28,7 @@
                     <div class="form-group">
                         <label>Nominal Pengajuan:</label>
                         <input type="text" class="form-control" name="nominal" placeholder="Enter nominal"
-                            value="<?php echo $pengajuan_emas->nominal_pengajuan; ?>" id="nominal" />
+                            value="<?php echo $pengajuan_emas->nominal_pengajuan; ?>" id="nominal" style="background-color: #EEEEEE;" readonly />
                     </div>
 
                     <div class="form-group">
@@ -36,6 +37,13 @@
                             style="background-color: #EEEEEE;" value="<?php echo $pengajuan_emas->berat_emas; ?>" id="jumlah" readonly />
                     </div>
 
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select name="status" id="status" class="form-control">
+                            <option value="1">Approve</option>
+                            <option value="2">Reject</option>
+                        </select>
+                    </div>
 
                 </div>
                 <div class="card-footer">
