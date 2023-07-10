@@ -61,7 +61,9 @@ Route::get('/pengajuan_sampah', [App\Http\Controllers\PengajuanSampahController:
 Route::get('/pengajuan_sampah/input', [App\Http\Controllers\PengajuanSampahController::class, 'input']);
 Route::post('/pengajuan_sampah/store', [App\Http\Controllers\PengajuanSampahController::class, 'store']);
 Route::get('/pengajuan_sampah/edit/{id}', [App\Http\Controllers\PengajuanSampahController::class, 'edit']);
+Route::get('/pengajuan_sampah/getpengajuan/{id}', [App\Http\Controllers\PengajuanSampahController::class, 'getpengajuan']);
 Route::post('/pengajuan_sampah/update', [App\Http\Controllers\PengajuanSampahController::class, 'update']);
+Route::post('/pengajuan_sampah/approve', [App\Http\Controllers\PengajuanSampahController::class, 'approve']);
 Route::post('/cek_harga', [App\Http\Controllers\PengajuanSampahController::class, 'cek_harga']);
 Route::get('/pengajuan_sampah/delete/{id}', [App\Http\Controllers\PengajuanSampahController::class, 'delete']);
 
