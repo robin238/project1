@@ -29,6 +29,7 @@ Route::post('/actionRegister', [App\Http\Controllers\RegisterController::class, 
 Route::get('/login', [App\Http\Controllers\LoginController::class, 'login'])->name('login');
 Route::get('/checkLogin', [App\Http\Controllers\LoginController::class, 'checkLogin']);
 Route::post('/actionLogin', [App\Http\Controllers\LoginController::class, 'actionLogin']);
+Route::get('/logout', [App\Http\Controllers\LoginController::class, 'logout']);
 
 Route::group(['middleware' => 'admin'], function () {
     Route::get('/dashboard', function () {
@@ -37,13 +38,20 @@ Route::group(['middleware' => 'admin'], function () {
 });
 
 Route::group(['middleware' => 'nasabah'], function () {
-    Route::get('/dashboard_nasabah', function () {
-        // return 'Dashboard Nasabah';
-        return view('dashboard_nasabah');
-    });
+    // Route::get('/dashboard_nasabah', function () {
+    //     // return 'Dashboard Nasabah';
+    //     return view('dashboard_nasabah');
+    // });
+
+    // Route::get('/dashboard', function () {
+    //     return view('dashboard');
+    // });
+
+    Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index']);
 });
-
-
+// Route::group(['middleware' => ['auth']], function () {
+//     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index']);
+// });
 
 Route::get('/nasabah', [App\Http\Controllers\NasabahController::class, 'index']);
 Route::get('/nasabah/detail/{id}', [App\Http\Controllers\NasabahController::class, 'detail']);

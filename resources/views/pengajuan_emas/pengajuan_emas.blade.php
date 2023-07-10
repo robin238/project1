@@ -31,25 +31,28 @@
                             <div class="table-responsive">
                                 <table class="table table-borderless table-vertical-center">
                                     <thead>
-                                        <tr>
-                                            <th class="p-0 w-40px"></th>
-                                            <th class="p-0 min-w-200px"></th>
-                                            <th class="p-0 min-w-100px"></th>
-                                            <th class="p-0 min-w-100px"></th>
-                                            <th class="p-0 min-w-100px"></th>
-                                            <th class="p-0 min-w-150px"></th>
+                                        <tr class="border-bottom">
+                                            <th class="p-0 w-40px text-center">No.</th>
+                                            <th class="p-0 min-w-200px text-center">Nama</th>
+                                            <th class="p-0 min-w-100px text-center">Harga Emas</th>
+                                            <th class="p-0 min-w-100px text-center">Nominal Pencairan</th>
+                                            <th class="p-0 min-w-100px text-center">Berat Emas</th>
+                                            <th class="p-0 min-w-150px text-center">Opsi</th>
                                         </tr>
+
                                     </thead>
+
                                     <tbody>
                                         @foreach ($data as $pengajuanEmas)
                                             <tr>
-                                                <td class="pl-0 py-4">
-                                                    <div class="symbol symbol-50 symbol-light">
+                                                <td class="pl-0">
+                                                    {{-- <div class="symbol symbol-50 symbol-light">
                                                         <span class="symbol-label">
                                                             <img src="assets/media/svg/misc/008-infography.svg"
                                                                 class="h-50 align-self-center" alt="">
                                                         </span>
-                                                    </div>
+                                                    </div> --}}
+                                                    {{ $loop->iteration . '.' }}
                                                 </td>
                                                 <td class="pl-0">
                                                     <a href="#"
@@ -132,7 +135,7 @@
                                                         </span>
                                                     </a>
 
-                                                    <a href="/pengajuan_emas/delete/{{ $pengajuanEmas->id }}"
+                                                    {{-- <a href="/pengajuan_emas/delete/{{ $pengajuanEmas->id }}"
                                                         class="btn btn-icon btn-light btn-hover-primary btn-sm">
                                                         <span class="svg-icon svg-icon-md svg-icon-primary">
                                                             <!--begin::Svg Icon | path:assets/media/svg/icons/General/Trash.svg-->
@@ -153,7 +156,7 @@
                                                             </svg>
                                                             <!--end::Svg Icon-->
                                                         </span>
-                                                    </a>
+                                                    </a> --}}
                                                 </td>
                                             </tr>
                                         @endforeach

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Auth;
 use Session;
 
+
 class LoginController extends Controller
 {
 
@@ -21,7 +22,7 @@ class LoginController extends Controller
     //  return $request->all();
 
         if (Auth::guard('nasabah')->attempt(['email_nasabah' => $request->email_login, 'password' => $request->password], $request->remember)) {
-            return redirect()->to('dashboard_nasabah');
+            return redirect()->to('dashboard');
         }
 
         if (Auth::guard('admin')->attempt(['email_user' => $request->email_login, 'password' => $request->password], $request->remember)) {
@@ -30,8 +31,8 @@ class LoginController extends Controller
         // return $request->all();
 
 
-        Session::flash('message', 'Akun belum terdaftar, silahkan daftar melalui menu daftar');
-        Session::flash('alert_class', 'danger');
+        // Session::flash('message', 'Akun belum terdaftar, silahkan daftar melalui menu daftar');
+        // Session::flash('alert_class', 'danger');
         return redirect()->back();
     }
 
@@ -40,5 +41,24 @@ class LoginController extends Controller
         return response()->json(Auth::guard('nasabah')->user());
 
     }
+
+    // public function Loginproses(Request $request)
+    // {
+    //     if(Auth::attempt($request->only('email','password'))){
+    //      return redirect('/');
+    //     }
+
+    // }
+
+      public function logout(Request $request)
+    {
+        Auth::logout();
+        Session::flush();
+
+        return redirect('/login');
+    }
+
+
+
 
 }

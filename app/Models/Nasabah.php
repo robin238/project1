@@ -11,6 +11,7 @@ use Laravel\Sanctum\HasApiTokens;
 class Nasabah extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+    protected $guard = "nasabah";
 
     protected $table = 'tbl_nasabah';
 
@@ -48,5 +49,5 @@ class Nasabah extends Authenticatable
     {
         return $this->belongsTo('\App\Models\UserLevel' , 'user_level');
     }
-   
+
 }
