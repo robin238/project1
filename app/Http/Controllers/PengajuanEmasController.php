@@ -50,6 +50,7 @@ class PengajuanEmasController extends Controller
             'harga_emas' => $request->harga,
             'nominal_pengajuan' => $request->nominal,
             'berat_emas' => $request->jumlah_emas,
+            'status' => 0,
             'created_at' => $current_timestamp,
 
         ]);

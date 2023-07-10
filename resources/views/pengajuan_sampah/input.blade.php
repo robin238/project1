@@ -66,7 +66,7 @@
                 var id_sampah = $(this).val();
                 $.ajax({
                     type: 'POST',
-                    url: '/cek_harga',
+                    url: 'cek_harga',
                     data: {
                         id_sampah: id_sampah
                     },

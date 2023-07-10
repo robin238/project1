@@ -20,13 +20,15 @@ class LoginController extends Controller
     public function actionLogin(Request $request)
     {
     //  return $request->all();
+        Auth::logout();
+        Session::flush();
 
         if (Auth::guard('nasabah')->attempt(['email_nasabah' => $request->email_login, 'password' => $request->password], $request->remember)) {
             return redirect()->to('dashboard');
         }
 
         if (Auth::guard('admin')->attempt(['email_user' => $request->email_login, 'password' => $request->password], $request->remember)) {
-            return redirect()->to('dashboard');
+            return redirect()->to('dashboard_admin');
         }
         // return $request->all();
 
