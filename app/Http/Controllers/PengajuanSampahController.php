@@ -8,6 +8,7 @@ use App\Models\PengajuanSampah;
 use App\Http\Controllers\Auth;
 use DB;
 use Session;
+use Carbon\Carbon;
 
 class PengajuanSampahController extends Controller
 {
@@ -41,6 +42,7 @@ class PengajuanSampahController extends Controller
 
     public function store(Request $request)
     {
+        $current_timestamp = Carbon::now();
         // insert data ke table pegawai
         $pengajuan = DB::table('tbl_pengajuan_sampah')->insertGetId([
             'id_nasabah' => 69,
@@ -50,13 +52,13 @@ class PengajuanSampahController extends Controller
             'berat' => $request->berat,
             'jumlah_rupiah' => $request->jumlah_uang,
             'status' => 0,
+            'created_at' =>  $current_timestamp,
         ]);
 
-    
+
 
         // alihkan halaman ke halaman pegawai
-        return redirect('pengajuan_sampah/input');
-        // return view('pengajuan_sampah/input');
+        return redirect('/pengajuan_sampah');
         // setiap abis koma fun view ngelempar data ke "viewnya / blade"
     }
 
@@ -134,11 +136,11 @@ class PengajuanSampahController extends Controller
         return view('pengajuan_sampah/approve', compact('pengajuan_sampah', 'jenis_sampah'));
     }
 
-    //Approve 
+    //Approve
     public function approve(Request $request)
     {
         // approve data pengajuan sampah
-       
+
         $approve =DB::table('tbl_pengajuan_sampah')
             ->where('id', $request->id)
             ->update([
@@ -150,11 +152,11 @@ class PengajuanSampahController extends Controller
         ->first();
 
         if($request->approve==1){
-            
+
             $getsaldo = DB::table('tbl_nasabah')
             ->where('id', $pengajuan_sampah->id_nasabah)
             ->first();
-            
+
             $total = $pengajuan_sampah->jumlah_rupiah + $getsaldo->saldo;
             $update_saldo =DB::table('tbl_nasabah')
             ->where('id', $getsaldo->id)

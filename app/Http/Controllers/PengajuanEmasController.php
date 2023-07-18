@@ -9,6 +9,7 @@ use DB;
 use Session;
 use Carbon\Carbon;
 use RealRashid\SweetAlert\Facades\Alert;
+use Auth;
 
 
 class PengajuanEmasController extends Controller
@@ -33,7 +34,7 @@ class PengajuanEmasController extends Controller
 
     public function input()
     {
-        $harga_emas = DB::table('tbl_harga_emas')->latest('id')->first();;
+        $harga_emas = DB::table('tbl_harga_emas')->latest('id')->first();
 
         return view('pengajuan_emas/input', compact('harga_emas'));
         // setiap abis koma fun view ngelempar data ke "viewnya / blade"
@@ -42,20 +43,25 @@ class PengajuanEmasController extends Controller
     public function store(Request $request)
     {
 
+        $saldo=Auth::guard('nasabah')->user()->saldo ;
         $current_timestamp = Carbon::now();
         // insert data ke table pegawai
-        DB::table('tbl_pengajuan_emas')->insert([
-            'id_nasabah' => 69,
-            'id_harga_emas' => $request->id_harga,
-            'harga_emas' => $request->harga,
-            'nominal_pengajuan' => $request->nominal,
-            'berat_emas' => $request->jumlah_emas,
-            'status' => 0,
-            'created_at' => $current_timestamp,
 
+        if($saldo>=$request->nominal){
+            DB::table('tbl_pengajuan_emas')->insert([
+                'id_nasabah' => 69,
+                'id_harga_emas' => $request->id_harga,
+                'harga_emas' => $request->harga,
+                'nominal_pengajuan' => $request->nominal,
+                'berat_emas' => $request->jumlah_emas,
+                'status' => 0,
+                'created_at' => $current_timestamp,
         ]);
+        }else{
+            toast('Melebihi Saldo','danger');
+        }
         // alihkan halaman ke halaman pegawai
-        return redirect('pengajuan_emas/input');
+        return redirect('/pengajuan_emas');
         // return view('pengajuan_emas/input');
         // setiap abis koma fun view ngelempar data ke "viewnya / blade"
     }

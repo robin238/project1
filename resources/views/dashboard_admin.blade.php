@@ -63,7 +63,7 @@
                     </div>
                     <div class="col">
                         <a style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);">
-                            {{ 'Rp ' . number_format($total_pengajuan_emas->total_pengajuan_emas) }}
+                            {{ number_format($total_pengajuan_emas->total_pengajuan_emas) }}
                         </a>
                     </div>
 
