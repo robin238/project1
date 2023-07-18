@@ -10,8 +10,9 @@
                         <span class="card-label font-weight-bolder text-dark">List Pengajuan Sampah</span>
                         {{-- <span class="text-muted mt-3 font-weight-bold font-size-sm">More than 400+ new members</span> --}}
                     </h3>
-
-                    <a href="/pengajuan_sampah/input"> <button class="btn btn-primary"> Ajukan sampah</button></a>
+                    @if (Auth::guard('nasabah')->check() == true)
+                        <a href="/pengajuan_sampah/input"> <button class="btn btn-primary"> Ajukan sampah</button></a>
+                    @endif
 
 
                 </div>
@@ -26,25 +27,28 @@
                             <div class="table-responsive">
                                 <table class="table table-borderless table-vertical-center">
                                     <thead>
-                                        <tr>
-                                            <th class="p-0 w-40px"></th>
-                                            <th class="p-0 min-w-200px"></th>
-                                            <th class="p-0 min-w-100px"></th>
-                                            <th class="p-0 min-w-125px"></th>
-                                            <th class="p-0 min-w-110px"></th>
-                                            <th class="p-0 min-w-150px"></th>
+                                        <tr class="border-bottom">
+                                            <th class="p-0 w-40px text-center">No.</th>
+                                            <th class="p-0 min-w-200px text-center">Nama</th>
+                                            <th class="p-0 min-w-100px text-center">Harga</th>
+                                            <th class="p-0 min-w-100px text-center">Berat(kg)</th>
+                                            <th class="p-0 min-w-125px text-center">Jenis Sampah</th>
+                                            <th class="p-0 min-w-110px text-center">Nominal</th>
+                                            <th class="p-0 min-w-110px text-center">Status</th>
+                                            <th class="p-0 min-w-150px text-center">Opsi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($data as $pengajuanSampah)
                                             <tr>
                                                 <td class="pl-0 py-4">
-                                                    <div class="symbol symbol-50 symbol-light">
+                                                    {{-- <div class="symbol symbol-50 symbol-light">
                                                         <span class="symbol-label">
                                                             <img src="assets/media/svg/misc/008-infography.svg"
                                                                 class="h-50 align-self-center" alt="">
                                                         </span>
-                                                    </div>
+                                                    </div> --}}
+                                                    {{ $loop->iteration . '.' }}
                                                 </td>
                                                 <td class="pl-0">
                                                     <a href="#"
@@ -55,21 +59,44 @@
                                                             href="#">{{ $pengajuanSampah->created_at }}</a>
                                                     </div>
                                                 </td>
-                                                <td class="text-right">
+                                                <td class="text-center">
                                                     <span
                                                         class="text-dark-75 font-weight-bolder d-block font-size-lg">{{ $pengajuanSampah->harga_pengajuan_sampah }}</span>
+
+                                                </td>
+                                                <td class="text-center">
                                                     <span
                                                         class="text-muted font-weight-bold">{{ $pengajuanSampah->berat }}</span>
                                                 </td>
-                                                <td class="text-right">
+                                                <td class="text-center">
                                                     <span
                                                         class="text-muted font-weight-500">{{ $pengajuanSampah->getSampah->sampah }}</span>
                                                 </td>
-                                                <td class="text-right">
+                                                <td class="text-center">
                                                     <span
                                                         class="text-dark-75 font-weight-bolder d-block font-size-lg">{{ $pengajuanSampah->jumlah_rupiah }}</span>
                                                 </td>
-                                                <td class="text-right pr-0">
+                                                <td class="text-center">
+
+                                                    @if ($pengajuanSampah->status == null || $pengajuanSampah->status == 0)
+                                                        <span
+                                                            class="badge badge-pill badge-primary font-weight-bolder font-size-lg">
+                                                            Proses
+                                                        </span>
+                                                    @elseif ($pengajuanSampah->status == 1)
+                                                        <span
+                                                            class="badge badge-pill badge-success font-weight-bolder font-size-lg">
+                                                            disetujui
+                                                        </span>
+                                                    @else
+                                                        <span
+                                                            class="badge badge-pill badge-danger font-weight-bolder font-size-lg">
+                                                            Ditolak
+                                                        </span>
+                                                    @endif
+
+                                                </td>
+                                                <td class="text-center pr-0">
                                                     @if (Auth::guard('admin')->check() == true)
                                                         <a href="/pengajuan_sampah/getpengajuan/{{ $pengajuanSampah->id }}"
                                                             class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3">

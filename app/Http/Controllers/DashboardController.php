@@ -23,6 +23,7 @@ class DashboardController extends Controller
         ->select(DB::raw('SUM(berat) as total_sampah'))
         ->where('id_nasabah', $id)
         ->where('status', 0)
+        ->orWhere('status', 1)
         ->first();
 
         $total_pengajuan_emas = DB::table('tbl_pengajuan_emas')

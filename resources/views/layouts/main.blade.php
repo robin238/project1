@@ -42,7 +42,7 @@
         .aside-menu .menu-nav>.menu-item:not(.menu-item-parent):not(.menu-item-open):not(.menu-item-here):not(.menu-item-active):hover>.menu-link .menu-icon.svg-icon svg g [fill] {
             -webkit-transition: fill 0.3s ease;
             transition: fill 0.3s ease;
-            fill: #008000 !important;
+            fill: #494b74 !important;
         }
 
         .apexcharts-canvas {

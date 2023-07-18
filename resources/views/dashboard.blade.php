@@ -61,7 +61,7 @@
                     <div class="col">
 
                         <a style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);">
-                            {{ $total_pengajuan_sampah->total_sampah }}
+                            {{ $total_pengajuan_sampah->total_sampah }} KG
                         </a>
                     </div>
 
