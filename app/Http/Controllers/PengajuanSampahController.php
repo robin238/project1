@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\PengajuanSampah;
-use App\Http\Controllers\Auth;
+use Auth;
 use DB;
 use Session;
 use Carbon\Carbon;
+use PDF;
 
 class PengajuanSampahController extends Controller
 {
@@ -168,5 +169,30 @@ class PengajuanSampahController extends Controller
         // alihkan halaman ke halaman pengajuan sampah
         return redirect('/pengajuan_sampah');
     }
+
+    public function pdf($id)
+	{
+
+        $ids= Auth::guard('nasabah')->user()->id ;
+
+        // $saldo=Auth::guard('nasabah')->user()->saldo ;
+        // $value=Auth::guard('nasabah')->user();
+
+
+	    $data = [
+	            'title' => 'How To Create PDF File Using DomPDF In Laravel 9 - Techsolutionstuff',
+	            'date' => date('d/m/Y'),
+	            'users' => $ids
+	    ];
+
+	    // if($request->has('download'))
+	    // {
+	        $pdf = PDF::loadView('pengajuan_sampah/pdf',$data);
+	        // return $pdf->download('users_pdf_example.pdf');
+	        return $pdf->stream('users_pdf_example.pdf');
+	    // }
+
+	    // return view('pengajuan_sampah/pdf',compact('user'));
+	}
 
 }

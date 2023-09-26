@@ -40,6 +40,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('/pengajuan_sampah/getpengajuan/{id}', [App\Http\Controllers\PengajuanSampahController::class, 'getpengajuan']);
     Route::post('/pengajuan_sampah/approve', [App\Http\Controllers\PengajuanSampahController::class, 'approve']);
     Route::get('/pengajuan_sampah/delete/{id}', [App\Http\Controllers\PengajuanSampahController::class, 'delete']);
+    Route::get('/pengajuan_sampah/pdf/{id}', [App\Http\Controllers\PengajuanSampahController::class, 'pdf']);
 
     //pengajuan emas
     Route::get('/pengajuan_emas_approve/edit/{id}', [App\Http\Controllers\PengajuanEmasController::class, 'edit_approve']);
@@ -65,12 +66,13 @@ Route::group(['middleware' => 'nasabah'], function () {
     Route::post('/pengajuan_sampah/store', [App\Http\Controllers\PengajuanSampahController::class, 'store']);
     Route::get('/pengajuan_sampah/edit/{id}', [App\Http\Controllers\PengajuanSampahController::class, 'edit']);
     Route::post('/pengajuan_sampah/update', [App\Http\Controllers\PengajuanSampahController::class, 'update']);
+    Route::get('/pengajuan_sampah/pdf/{id}', [App\Http\Controllers\PengajuanSampahController::class, 'pdf']);
 
     //pengajuan emas
     Route::get('/pengajuan_emas/input', [App\Http\Controllers\PengajuanEmasController::class, 'input']);
     Route::post('/pengajuan_emas/store', [App\Http\Controllers\PengajuanEmasController::class, 'store']);
     Route::get('/pengajuan_emas/edit/{id}', [App\Http\Controllers\PengajuanEmasController::class, 'edit']);
-    Route::post('/pengajuan_emas/update', [App\Http\Controllers\PengajuanEmasController::class, 'update']);
+    Route::post('/pengajuan_emas/update', [App\Http\Controllers\PengajuanEmasController::class, 'update'])->name('pdf');
 });
 // Route::group(['middleware' => ['auth']], function () {
 //     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index']);
